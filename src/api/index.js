@@ -1,4 +1,6 @@
 import request from '../utils/request';
+import url from './path'
+import { http } from './axios'
 
 export const fetchData = query => {
     return request({
@@ -7,3 +9,6 @@ export const fetchData = query => {
         params: query
     });
 };
+export function logins (data) {
+    return http(url.logins, data ,'POST')
+}
