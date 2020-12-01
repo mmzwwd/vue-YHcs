@@ -1,10 +1,11 @@
 <template>
     <div class="header">
         <!-- 折叠按钮 -->
-        <div class="collapse-btn" @click="collapseChage">
+        <!-- <div class="collapse-btn" @click="collapseChage">
             <i v-if="!collapse" class="el-icon-s-fold"></i>
             <i v-else class="el-icon-s-unfold"></i>
-        </div>
+        </div> -->
+        <div class="collapse-btn"></div>
         <div class="logo">后台管理系统</div>
         <div class="header-right">
             <div class="header-user-con">
@@ -104,9 +105,9 @@ export default {
         }
     },
     mounted() {
-        if (document.body.clientWidth < 1500) {
-            this.collapseChage();
-        }
+        // if (document.body.clientWidth < 1500) {
+        //     this.collapseChage();
+        // }
     }
 };
 </script>
@@ -122,6 +123,7 @@ export default {
 .collapse-btn {
     float: left;
     padding: 0 21px;
+    height: 70px;
     cursor: pointer;
     line-height: 70px;
 }
