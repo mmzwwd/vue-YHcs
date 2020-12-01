@@ -4,14 +4,16 @@
         <v-sidebar></v-sidebar>
         <div class="content-box" :class="{'content-collapse':collapse}">
             <!-- <v-tags></v-tags> -->
-            <div class="content">
-                <v-crumbs :list='list'></v-crumbs>
-                <transition name="move" mode="out-in">
-                    <keep-alive :include="tagsList">
-                        <router-view></router-view>
-                    </keep-alive>
-                </transition>
-                <el-backtop target=".content"></el-backtop>
+            <div class="content-back">
+                <div class="content">
+                    <v-crumbs :list='list'></v-crumbs>
+                    <transition name="move" mode="out-in">
+                        <keep-alive :include="tagsList">
+                            <router-view></router-view>
+                        </keep-alive>
+                    </transition>
+                    <el-backtop target=".content"></el-backtop>
+                </div>
             </div>
         </div>
     </div>
