@@ -4,8 +4,8 @@
         <v-sidebar></v-sidebar>
         <div class="content-box" :class="{'content-collapse':collapse}">
             <!-- <v-tags></v-tags> -->
-            <v-crumbs :list='list' />
             <div class="content">
+                <v-crumbs :list='list'></v-crumbs>
                 <transition name="move" mode="out-in">
                     <keep-alive :include="tagsList">
                         <router-view></router-view>
@@ -23,6 +23,8 @@ import vSidebar from './Sidebar.vue';
 import vTags from './Tags.vue';
 import vCrumbs from './crumbs.vue';
 import bus from './bus';
+import Cookies from 'js-cookie';
+
 export default {
     data() {
         return {
@@ -38,8 +40,9 @@ export default {
     },
     computed: {
         list () {
+            this.$store.dispatch('setRouteMatched', this.$route.matched)
             console.log(this.$route.matched)
-             return this.$route.matched
+            return this.$route.matched
         },
     },
     created() {

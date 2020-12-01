@@ -17,7 +17,7 @@ export default new Router({
                 {
                     path: '/dashboard',
                     component: () => import(/* webpackChunkName: "dashboard" */ '../components/page/Dashboard.vue'),
-                    meta: { title: '系统首页',icon: 'el-icon-lx-home',}
+                    meta: { title: '系统首页',icon: 'el-icon-lx-home',crumbs:true, }
                 },
                 {
                     path: '/icon',

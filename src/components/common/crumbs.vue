@@ -1,7 +1,7 @@
 <template>
     <!-- <div class="crumbs"> -->
-        <el-breadcrumb  separator="/">
-            <el-breadcrumb-item v-for="(item, index) in lists" :key="index" v-show="index!=0" >
+        <el-breadcrumb  separator="/" v-if="!routeMatched[1].meta.crumbs">
+            <el-breadcrumb-item v-for="(item, index) in routeMatched" :key="index" v-show="index!=0" >
                 <i :class="item.meta.icon"></i>
                 {{item.meta.title}}
                 </el-breadcrumb-item>
@@ -9,6 +9,7 @@
     <!-- </div> -->
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
   props: {
     list: {
@@ -18,43 +19,23 @@ export default {
     },
     separator: String
   },
-  watch: {
-    list(newName, oldName) {
-      this.lists=newName
-        console.log(newName)
-      // ...
-    }
-  },
-  data(){
-      return{
-          lists:[
-             {
-                icon: 'el-icon-lx-home',
-                index: 'dashboard',
-                name: '系统首页'
-            },
-            {
-                icon: 'el-icon-lx-cascades',
-                index: 'table',
-                name: '基础表格'
-            },
-          ]
-      }
-  }
+ computed: {
+      ...mapGetters(['routeMatched'])
+},
 }
 </script>
 <style scoped>
 .el-breadcrumb {
-    line-height: 44px;
+    /* line-height: 38px; */
     /* background-color: #fff; */
     border: none;
-    height: 44px;
+    /* height: 38px; */
     width: 100%;
     box-sizing: border-box;
     font-family: MicrosoftYaHei;
     color: #444;
     font-size: 14px;
     padding-left: 10px;
-    margin-top: 10px;
+    margin: 10px 0;
 }
 </style>
