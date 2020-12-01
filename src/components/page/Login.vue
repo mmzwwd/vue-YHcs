@@ -64,8 +64,9 @@ export default {
     position: relative;
     width: 100%;
     height: 100%;
-    background-image: url(../../assets/img/login-bg.jpg);
+    background-image: url('http://img.tukuppt.com/bg_grid/00/03/33/XHXFfCkahT.jpg!/fh/350');
     background-size: 100%;
+    background-size: cover;
 }
 .ms-title {
     width: 100%;
@@ -79,10 +80,10 @@ export default {
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 350px;
-    margin: -190px 0 0 -175px;
+    width: 480px;
+    margin: -190px 0 0 -240px;
     border-radius: 5px;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.4);
     overflow: hidden;
 }
 .ms-content {

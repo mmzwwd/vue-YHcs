@@ -12,7 +12,7 @@ export default new Router({
         {
             path: '/',
             component: () => import(/* webpackChunkName: "home" */ '../components/common/Home.vue'),
-            meta: { title: '自述文件' },
+            meta: { title: '首页' },
             children: [
                 {
                     path: '/dashboard',
