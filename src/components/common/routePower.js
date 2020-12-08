@@ -2,12 +2,12 @@ let  routerUrl={
     items: [
         {
             icon: 'el-icon-lx-home',
-            index: '/dashboard',
+            index: 'dashboard',
             title: '系统首页'
         },
         {
             icon: 'el-icon-lx-cascades',
-            index: '/table',
+            index: 'table',
             title: '基础表格'
         },
           {
@@ -16,11 +16,11 @@ let  routerUrl={
             title: '内容管理',
             subs: [
                 {
-                    index: '/books/booksList',
+                    index: 'booksList',
                     title: '图书列表'
                 },
                 {
-                    index:'/books/Tabs',
+                    index:'Tabs',
                     title:'专题运营'
                 }
             ]

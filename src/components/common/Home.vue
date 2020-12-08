@@ -6,7 +6,6 @@
             <!-- <v-tags></v-tags> -->
             <div class="content-back">
                 <div class="content">
-                    <v-crumbs :list='list'></v-crumbs>
                     <transition name="move" mode="out-in">
                         <keep-alive :include="tagsList">
                             <router-view></router-view>
@@ -23,7 +22,6 @@
 import vHead from './Header.vue';
 import vSidebar from './Sidebar.vue';
 import vTags from './Tags.vue';
-import vCrumbs from './crumbs.vue';
 import bus from './bus';
 import Cookies from 'js-cookie';
 
@@ -38,14 +36,13 @@ export default {
         vHead,
         vSidebar,
         vTags,
-        vCrumbs
     },
     computed: {
-        list () {
-            this.$store.dispatch('setRouteMatched', this.$route.matched)
-            console.log(this.$route.matched)
-            return this.$route.matched
-        },
+        // list () {
+        //     this.$store.dispatch('setRouteMatched', this.$route.matched)
+        //     console.log(this.$route.matched)
+        //     return this.$route.matched
+        // },
     },
     created() {
         bus.$on('collapse-content', msg => {

@@ -2,15 +2,17 @@
     <div class="sidebar">
         <el-menu
             class="sidebar-el-menu"
-            :default-active="onRoutes"
+            :default-active="activeIndex"
+            @select="handleSelect"
             :collapse="collapse"
+            active-text-color="#409EFF"
             unique-opened
             router
         >
         <!-- background-color="#324157"
             text-color="#bfcbd9"
             active-text-color="#20a0ff" -->
-            <template v-for="item in items">
+           <template v-for="item in items">
                 <template v-if="item.subs">
                     <el-submenu :index="item.index" :key="item.index">
                         <template slot="title">
@@ -55,6 +57,7 @@ import routerUrl from '../common/routePower';
 export default {
     data() {
         return {
+            activeIndex: '/',
             collapse: false,
             items: []
         };
@@ -64,6 +67,14 @@ export default {
             return this.$route.path.replace('/', '');
         }
     },
+    watch: {
+	'$route' () {
+        // console.log(this.activeIndex)
+        this.activeIndex = this.$route.matched[1].path.replace('/', '')
+        // console.log(this.activeIndex)
+		this.handleSelect(this.activeIndex)
+       }
+    },
     created() {
          this.items=routerUrl.items;
         // 通过 Event Bus 进行组件间通信，来折叠侧边栏
@@ -71,7 +82,20 @@ export default {
             this.collapse = msg;
             bus.$emit('collapse-content', msg);
         });
-    }
+    },
+    mounted () {
+        // console.log(this.$route)
+        // console.log(this.$route.matched[1].path.replace('/', ''))
+         let  index=this.$route.matched.length-1
+        console.log( this.$route.matched[index].path)
+        this.activeIndex = this.$route.matched[1].path.replace('/', '')
+    },
+     methods: {
+        handleSelect (index) {
+            console.log(index)
+            this.activeIndex = index
+        }
+    },
 };
 </script>
 

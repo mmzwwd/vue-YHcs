@@ -182,7 +182,9 @@ a {
 .v-note-wrapper .v-note-panel {
     min-height: 500px;
 }
-
+.el-menu-item.is-active {
+    background: #dbf0fd;
+}
 
 /* // 翻页的效果 */
 .pageblock {

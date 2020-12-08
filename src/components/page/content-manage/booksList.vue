@@ -1,48 +1,51 @@
 <template>
-  <div class='booksList'>
-    <div class="container"   v-if="!sub">
-        <div class="handle-box">
-            <el-input v-model="query.name" placeholder="用户名" class="handle-input mr10"></el-input>
-            <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
-        </div>
-        <el-table :data="tableData" border   class="table"   ref="multipleTable"   header-cell-class-name="table-header">
-            <el-table-column type="index" label="序号" width="55" align="center"></el-table-column>
-            <el-table-column prop="name" label="图书名称"></el-table-column>
-            <el-table-column label="ISBN">
-                <template slot-scope="scope">￥{{scope.row.money}}</template>
-            </el-table-column>
-            <!-- <el-table-column label="头像(查看大图)" align="center">
-                <template slot-scope="scope">
-                    <el-image
-                        class="table-td-thumb"
-                        :src="scope.row.thumb"
-                        :preview-src-list="[scope.row.thumb]"
-                    ></el-image>
-                </template>
-            </el-table-column> -->
-            <el-table-column prop="address" label="文选ID"></el-table-column>
-            <el-table-column prop="date" label="更新时间"></el-table-column>
-            <el-table-column prop="address" label="中图分类"></el-table-column>
-            <el-table-column prop="date" label="作者"></el-table-column>
-            <el-table-column label="操作" width="180" align="center">
-                <template slot-scope="scope">
-                    <el-button
-                        type="text"
-                        icon="el-icon-edit"
-                        @click="deleteRow(scope.$index, scope.row)"
-                    >修改</el-button>
-                    <!-- <el-button
-                        type="text"
-                        icon="el-icon-delete"
-                        class="red"
-                        @click="handleDelete(scope.$index, scope.row)"
-                    >删除</el-button> -->
-                </template>
-            </el-table-column>
-        </el-table>
-        <div class="pagination">
-                    <page-unit :pageData="pageData" :func="getData"></page-unit>
-        </div>
+  <div>
+    <div class="booksList"   v-if="!sub">
+            <v-crumbs :list='crumbsList'></v-crumbs>
+            <div class="container">
+                <div class="handle-box">
+                    <el-input v-model="query.name" placeholder="用户名" class="handle-input mr10"></el-input>
+                    <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
+                </div>
+                <el-table :data="tableData" border   class="table"   ref="multipleTable"   header-cell-class-name="table-header">
+                    <el-table-column type="index" label="序号" width="55" align="center"></el-table-column>
+                    <el-table-column prop="name" label="图书名称"></el-table-column>
+                    <el-table-column label="ISBN">
+                        <template slot-scope="scope">￥{{scope.row.money}}</template>
+                    </el-table-column>
+                    <!-- <el-table-column label="头像(查看大图)" align="center">
+                        <template slot-scope="scope">
+                            <el-image
+                                class="table-td-thumb"
+                                :src="scope.row.thumb"
+                                :preview-src-list="[scope.row.thumb]"
+                            ></el-image>
+                        </template>
+                    </el-table-column> -->
+                    <el-table-column prop="address" label="文选ID"></el-table-column>
+                    <el-table-column prop="date" label="更新时间"></el-table-column>
+                    <el-table-column prop="address" label="中图分类"></el-table-column>
+                    <el-table-column prop="date" label="作者"></el-table-column>
+                    <el-table-column label="操作" width="180" align="center">
+                        <template slot-scope="scope">
+                            <el-button
+                                type="text"
+                                icon="el-icon-edit"
+                                @click="deleteRow(scope.$index, scope.row)"
+                            >修改</el-button>
+                            <!-- <el-button
+                                type="text"
+                                icon="el-icon-delete"
+                                class="red"
+                                @click="handleDelete(scope.$index, scope.row)"
+                            >删除</el-button> -->
+                        </template>
+                    </el-table-column>
+                </el-table>
+                <div class="pagination">
+                            <page-unit :pageData="pageData" :func="getData"></page-unit>
+                </div>
+            </div>
     </div>
     <div v-else>
         <router-view></router-view>
@@ -53,13 +56,23 @@
 <script>
 import { fetchData } from '../../../api/index';
 import pageUnit from '../commonest/Page';
+import vCrumbs from '../commonest/crumbs.vue';
 
 export default {
     name: 'basetable',
-    components: { pageUnit },
+    components: { pageUnit ,vCrumbs},
     data() {
         return {
-                  sub: this.$route.meta.isSub,
+            crumbsList:[
+                {
+                    icon:"el-icon-collection",
+                    title:"内容管理"
+                },{
+                    icon:"",
+                    title:"图书列表"
+                }
+            ],
+            sub: this.$route.meta.isSub,
             pageData: {
                 pageSize: 10,
                 currentPage: 1,
@@ -81,12 +94,27 @@ export default {
             id: -1
         };
     },
+        watch: {
+    '$route':'getPath'
+    },
     created() {
+        console.log(this.$route.meta.isSub)
         this.getData();
     },
+    computed: {
+        list () {
+            this.$store.dispatch('setRouteMatched', this.$route.matched)
+            console.log(this.$route.matched)
+            return this.$route.matched
+        },
+    },
     methods: {
+         getPath(){
+      // console.log(this.$route.meta.isSub)
+      this.sub=this.$route.meta.isSub
+    },
         deleteRow(ids, typp) {
-            this.$router.push({ path: '/books/booksEdit', query: { id: ids, } });
+            this.$router.push({ path: '/booksEdit', query: { id: ids, } });
         },
         // 获取 easy-mock 的模拟数据
         getData() {
