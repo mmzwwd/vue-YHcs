@@ -1,5 +1,5 @@
 <template>
-    <div class="dashboard">
+    <!-- <div class="dashboard">
         <p class="dashboard-p">数据总览</p>
         <el-row type="flex" class="row-bg" justify="space-between">
             <el-col :span="4"><div class="grid-content bg-purple-ts"><p>12341242本</p><div class="divider"></div><p>图书总量</p></div></el-col>
@@ -13,7 +13,7 @@
             <el-col :span="4"><div class="grid-content bg-purple-tsyy"><p>12341242本</p><div class="divider"></div><p>套书运营</p></div></el-col>
             <el-col :span="4"><div class="grid-content bg-purple-rm"><p>12341242本</p><div class="divider"></div><p>热门分类</p></div></el-col>
         </el-row>
-    </div>
+    </div> -->
 </template>
 
 <script>

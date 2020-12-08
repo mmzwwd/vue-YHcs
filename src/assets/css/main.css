@@ -55,7 +55,7 @@ a {
 .container {
     padding: 30px;
     background: #fff;
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
     border-radius: 5px;
 }
 
@@ -181,4 +181,31 @@ a {
 
 .v-note-wrapper .v-note-panel {
     min-height: 500px;
+}
+
+
+/* // 翻页的效果 */
+.pageblock {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 15px;
+    padding-bottom: 15px;
+}
+.topage {
+    float: right;
+    margin-right: 40px;
+    margin-left: 15px;
+}
+.el-pagination {
+    display: inline-block;
+    float: right;
+}
+.el-table th.gutter{
+    display: table-cell!important;
+}
+.maxwidth {
+    max-width: 215px;
+}
+.el-loading-mask{
+    z-index: 5000!important;
 }

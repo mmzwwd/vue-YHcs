@@ -30,6 +30,34 @@ export default new Router({
                     meta: { title: '基础表格',icon: 'el-icon-lx-cascades', }
                 },
                 {
+                    path: 'content-manage',
+                    redirect: "../components/page/content-manage",
+                    component: {
+                        render (c) {
+                            return c('router-view')
+                        }
+                    },                   
+                    meta: { title: '内容管理',icon: 'el-icon-collection', },
+                    children: [
+                        {
+                            path: '/books/booksList',
+                            component: () => import(/* webpackChunkName: "chart" */ '../components/page/content-manage/booksList.vue'),
+                            meta: { title: '图书列表',}
+                        },
+                        {
+                            path: '/books/booksEdit',
+                            component: () => import(/* webpackChunkName: "chart" */ '../components/page/content-manage/booksEdit.vue'),
+                            meta: { title: '图书编辑',isSub: true}
+                        },
+                        {
+                            path: '/books/Tabs',
+                            component: () => import(/* webpackChunkName: "chart" */ '../components/page/VueEditor.vue'),
+                            meta: { title: '专题运营',isSub: true}
+                        },
+                    ]
+
+                },
+                {
                     path: '/tabs',
                     component: () => import(/* webpackChunkName: "tabs" */ '../components/page/Tabs.vue'),
                     meta: { title: 'tab选项卡' }
@@ -97,11 +125,11 @@ export default new Router({
                     component: () => import(/* webpackChunkName: "403" */ '../components/page/403.vue'),
                     meta: { title: '403' }
                 },
-                {
-                    path: '/donate',
-                    component: () => import(/* webpackChunkName: "donate" */ '../components/page/Donate.vue'),
-                    meta: { title: '支持作者' }
-                }
+                // {
+                //     path: '/donate',
+                //     component: () => import(/* webpackChunkName: "donate" */ '../components/page/Donate.vue'),
+                //     meta: { title: '支持作者' }
+                // }
             ]
         },
         {
