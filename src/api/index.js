@@ -12,3 +12,6 @@ export const fetchData = query => {
 export function logins (data) {
     return http(url.logins, data ,'POST')
 }
+export function uploadFileSingle (data) {
+    return http(url.uploadFileSingle, data ,'POST')
+}

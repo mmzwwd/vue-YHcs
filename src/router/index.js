@@ -57,9 +57,16 @@ export default new Router({
                 },
                
                 {
-                    path: '/Tabs',
-                    component: () => import(/* webpackChunkName: "chart" */ '../components/page/VueEditor.vue'),
-                    meta: { title: '专题运营',isSub: true}
+                    path: '/specialList',
+                    component: () => import(/* webpackChunkName: "chart" */ '../components/page/content-manage/specialList.vue'),
+                    meta: { title: '专题运营'},
+                    children: [
+                        {
+                            path: '/speciaEdit',
+                            component: () => import(/* webpackChunkName: "chart" */ '../components/page/content-manage/speciaEdit.vue'),
+                            meta: { title: '专题编辑',isSub: true}
+                        },
+                    ]
                 },
                 {
                     path: '/tabs',

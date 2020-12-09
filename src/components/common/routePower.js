@@ -10,21 +10,21 @@ let  routerUrl={
             index: 'table',
             title: '基础表格'
         },
-          {
-            icon: 'el-icon-collection',
-            index: '3',
-            title: '内容管理',
-            subs: [
-                {
-                    index: 'booksList',
-                    title: '图书列表'
-                },
-                {
-                    index:'Tabs',
-                    title:'专题运营'
-                }
-            ]
-        }
+        //   {
+        //     icon: 'el-icon-collection',
+        //     index: '3',
+        //     title: '内容管理',
+        //     subs: [
+        //         {
+        //             index: 'booksList',
+        //             title: '图书列表'
+        //         },
+        //         {
+        //             index:'specialList',
+        //             title:'专题运营'
+        //         }
+        //     ]
+        // }
         // {
         //     icon: 'el-icon-lx-copy',
         //     index: 'tabs',

@@ -9,23 +9,12 @@
                 </div>
                 <el-table :data="tableData" border   class="table"   ref="multipleTable"   header-cell-class-name="table-header">
                     <el-table-column type="index" label="序号" width="55" align="center"></el-table-column>
-                    <el-table-column prop="name" label="图书名称" align="center"></el-table-column>
-                    <el-table-column label="ISBN" align="center">
+                    <el-table-column prop="name" label="专题名称" align="center"></el-table-column>
+                    <el-table-column label="图书数量" align="center">
                         <template slot-scope="scope">￥{{scope.row.money}}</template>
                     </el-table-column>
-                    <!-- <el-table-column label="头像(查看大图)" align="center">
-                        <template slot-scope="scope">
-                            <el-image
-                                class="table-td-thumb"
-                                :src="scope.row.thumb"
-                                :preview-src-list="[scope.row.thumb]"
-                            ></el-image>
-                        </template>
-                    </el-table-column> -->
-                    <el-table-column prop="address" label="文选ID" align="center"></el-table-column>
+                    <el-table-column prop="address" label="状态" align="center"></el-table-column>
                     <el-table-column prop="date" label="更新时间" align="center"></el-table-column>
-                    <el-table-column prop="address" label="中图分类" align="center"></el-table-column>
-                    <el-table-column prop="date" label="作者" align="center"></el-table-column>
                     <el-table-column label="操作" width="180" align="center">
                         <template slot-scope="scope">
                             <el-button
@@ -33,12 +22,6 @@
                                 icon="el-icon-edit"
                                 @click="deleteRow(scope.$index, scope.row)"
                             >修改</el-button>
-                            <!-- <el-button
-                                type="text"
-                                icon="el-icon-delete"
-                                class="red"
-                                @click="handleDelete(scope.$index, scope.row)"
-                            >删除</el-button> -->
                         </template>
                     </el-table-column>
                 </el-table>
@@ -69,7 +52,7 @@ export default {
                     title:"内容管理"
                 },{
                     icon:"",
-                    title:"图书列表"
+                    title:"专题运营"
                 }
             ],
             sub: this.$route.meta.isSub,
@@ -114,7 +97,7 @@ export default {
       this.sub=this.$route.meta.isSub
     },
         deleteRow(ids, typp) {
-            this.$router.push({ path: '/booksEdit', query: { id: ids, } });
+            this.$router.push({ path: '/speciaEdit', query: { id: ids, } });
         },
         // 获取 easy-mock 的模拟数据
         getData() {

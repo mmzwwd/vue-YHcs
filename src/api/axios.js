@@ -121,7 +121,7 @@ const http = (url, data, method = 'GET', responseType = 'json') => {
             url: url,
             params: obj,
             data: data,
-            headers: {'token': Cookies.get('ds_token')},
+            headers: {'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXJyZW50VGltZSI6MTYwNzQ5Mzc1MjExMiwiaXNzIjoiYXV0aDAiLCJleHAiOjE2MDc0OTQwNTIsImFjY291bnQiOiJjdWdiYWRtaW4ifQ.yvah5Kv1-m6QcS2oRjsl5XQeD0U6QCJSD3WZQXZLcYE'},
             responseType: responseType
         }).then(function(response) {
           if (response.data.code == 200 && response.status == 200) {
