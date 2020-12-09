@@ -28,17 +28,18 @@ a {
     top: 70px;
     bottom: 0;
     padding: 10px;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
     -webkit-transition: left .3s ease-in-out;
     transition: left .3s ease-in-out;
     background: #f0f0f0;
-    min-height: 100%;
+    /* min-height: 100%; */
 }
 .content-back{
     width: 100%;
+    height: 100%;
     min-height: 100%;
     border-radius:4px;
-    background: #fff;
+    /* background: #fff; */
 }
 .content {
     width: auto;
@@ -46,6 +47,10 @@ a {
     padding: 10px;
     /* overflow-y: scroll; */
     box-sizing: border-box;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-width: 1014px;
 }
 
 .content-collapse {
@@ -211,3 +216,39 @@ a {
 .el-loading-mask{
     z-index: 5000!important;
 }
+
+/*基础信息的样式*/
+.head .infon_text {
+    height: 50px;
+    line-height: 50px;
+    /*width:100%;*/
+    padding-left: 30px;
+    /* border-bottom: 1px solid #eee; */
+    margin-bottom: 10px;
+  }
+
+  .head .infon_shu {
+    width: 2px;
+    height: 15px;
+    display: inline-block;
+    background-color: #25a0e9;
+    margin-right: 9px;
+    vertical-align: middle;
+  }
+
+  .head .infon_text .infon_text_t {
+    color: #444;
+    font-size: 13.5px;
+  }
+  .head .infon_main {
+    margin-left: 75px;
+    margin-top: 10px;
+    margin-bottom: 100px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    height: 30px;
+    /*background-color:red;*/
+    line-height: 30px;
+    color: #444;
+    padding-right: 10px;
+  }

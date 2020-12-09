@@ -6,7 +6,7 @@
             <!-- <v-tags></v-tags> -->
             <div class="content-back">
                 <div class="content">
-                    <transition name="move" mode="out-in">
+                    <transition name="el-zoom-in-bottom" mode="out-in">
                         <keep-alive :include="tagsList">
                             <router-view></router-view>
                         </keep-alive>
