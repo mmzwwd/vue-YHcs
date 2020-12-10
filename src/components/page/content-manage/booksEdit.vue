@@ -1,6 +1,5 @@
 <template>
   <div class='booksEdit'>
-      <v-crumbs :list='crumbsList'></v-crumbs>
       <div class="container">
           <div class="head">
                 <div class="infon_text">
@@ -251,29 +250,19 @@
 </template>
 
 <script>
-import vCrumbs from '../commonest/crumbs.vue';
 import 'quill/dist/quill.core.css';
     import 'quill/dist/quill.snow.css';
     import 'quill/dist/quill.bubble.css';
     import { quillEditor } from 'vue-quill-editor';
 export default {
   name: 'booksEdit',
-  components: { vCrumbs,quillEditor},
+  components: { quillEditor},
   data(){
     return {
       dialogPreview:false,
       editorOption: {
                     placeholder: 'Hello World'
       },
-      crumbsList:[
-                {
-                    icon:"el-icon-collection",
-                    title:"内容管理"
-                },{
-                    icon:"",
-                    title:"图书编辑"
-                }
-      ],
       ruleForm: {
           name: '',
           date1: '',

@@ -1,6 +1,5 @@
 <template>
   <div class='speciaEdit'>
-        <v-crumbs :list='crumbsList'></v-crumbs>
         <div class="container">
                <div class="form" >
                 <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="136px" class="demo-ruleForm">
@@ -43,8 +42,8 @@
                             <div slot="header" class="clearfix">
                                 <el-button style="float: right; padding: 3px 0" type="text" @click="dialogVisible = true">新增</el-button>
                             </div>
-                            <transition name="el-fade-in-linear">
-                             <el-table :data="tableData" border  class="table"   ref="multipleTable"  height="386" header-cell-class-name="table-header">
+                            <transition name="list" tag="p">
+                             <el-table :data="tableData" border  class="table"  row-key="id"  ref="multipleTable"  height="386" header-cell-class-name="table-header">
                                 <el-table-column type="index" label="序号" width="55" align="center"></el-table-column>
                                 <el-table-column prop="money" label="ISBN" align="center"></el-table-column>
                                 <el-table-column prop="address" label="图书名称" align="center"></el-table-column>
@@ -124,27 +123,16 @@
 </template>
 
 <script>
-import vCrumbs from '../commonest/crumbs.vue';
 import { fetchData } from '../../../api/index';
 import {uploadFileSingle} from '@/api/index';
 export default {
   name: 'speciaEdit',
-  components: { vCrumbs},
   data(){
     return {
         multipleSelection:[],
         dialogVisible: false,
         dynamicTags: ['标签一', '标二', '标签三'],
         tableData:[],
-        crumbsList:[
-            {
-                icon:"el-icon-collection",
-                title:"内容管理"
-            },{
-                icon:"",
-                title:"专题编辑"
-            }
-      ],
     ruleForm: {
           name: '',
           imageUrl: '',
@@ -317,4 +305,24 @@ justify-content: flex-start;
     width: 150px;
     height: 148px;
 }
+
+.breadcrumb-enter-active,
+.breadcrumb-leave-active {
+  transition: all .8s;
+}
+
+.breadcrumb-enter,
+.breadcrumb-leave-active {
+  opacity: 0;
+  transform: translateX(10px);
+}
+
+.breadcrumb-move {
+  transition: all .5s;
+}
+
+.breadcrumb-leave-active {
+  position: absolute;
+}
+
 </style>

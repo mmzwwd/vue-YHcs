@@ -69,9 +69,9 @@ export default {
     },
     watch: {
 	'$route' () {
-        // console.log(this.activeIndex)
-        this.activeIndex = this.$route.matched[1].path.replace('/', '')
-        // console.log(this.activeIndex)
+          let  index=this.$route.matched.length-1
+        this.activeIndex = this.$route.matched[index].path
+        //  console.log(this.activeIndex)
 		this.handleSelect(this.activeIndex)
        }
     },
@@ -88,7 +88,8 @@ export default {
         // console.log(this.$route.matched[1].path.replace('/', ''))
          let  index=this.$route.matched.length-1
         console.log( this.$route.matched[index].path)
-        this.activeIndex = this.$route.matched[1].path.replace('/', '')
+        this.activeIndex = this.$route.matched[index].path
+        console.log(this.activeIndex)
     },
      methods: {
         handleSelect (index) {

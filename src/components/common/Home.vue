@@ -5,6 +5,7 @@
         <div class="content-box" :class="{'content-collapse':collapse}">
             <!-- <v-tags></v-tags> -->
             <div class="content-back">
+                 <v-crumbs :list='list' v-show="cartoon"></v-crumbs>
                 <div class="content">
                     <transition name="el-zoom-in-bottom" mode="out-in">
                         <keep-alive :include="tagsList">
@@ -22,12 +23,14 @@
 import vHead from './Header.vue';
 import vSidebar from './Sidebar.vue';
 import vTags from './Tags.vue';
+import vCrumbs from './crumbs.vue';
 import bus from './bus';
 import Cookies from 'js-cookie';
 
 export default {
     data() {
         return {
+            cartoon:true,
             tagsList: [],
             collapse: false
         };
@@ -35,14 +38,15 @@ export default {
     components: {
         vHead,
         vSidebar,
+        vCrumbs,
         vTags,
     },
     computed: {
-        // list () {
-        //     this.$store.dispatch('setRouteMatched', this.$route.matched)
-        //     console.log(this.$route.matched)
-        //     return this.$route.matched
-        // },
+        list () {
+            this.$store.dispatch('setRouteMatched', this.$route.matched)
+            // console.log(this.$route.matched)
+            return this.$route.matched
+        },
     },
     created() {
         bus.$on('collapse-content', msg => {

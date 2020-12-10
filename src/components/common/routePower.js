@@ -2,29 +2,29 @@ let  routerUrl={
     items: [
         {
             icon: 'el-icon-lx-home',
-            index: 'dashboard',
+            index: '/dashboard',
             title: '系统首页'
         },
         {
             icon: 'el-icon-lx-cascades',
-            index: 'table',
+            index: '/table',
             title: '基础表格'
         },
-        //   {
-        //     icon: 'el-icon-collection',
-        //     index: '3',
-        //     title: '内容管理',
-        //     subs: [
-        //         {
-        //             index: 'booksList',
-        //             title: '图书列表'
-        //         },
-        //         {
-        //             index:'specialList',
-        //             title:'专题运营'
-        //         }
-        //     ]
-        // }
+          {
+            icon: 'el-icon-collection',
+            index: '3',
+            title: '内容管理',
+            subs: [
+                {
+                    index: '/content-manage/booksList',
+                    title: '图书列表'
+                },
+                {
+                    index:'/content-manage/specialList',
+                    title:'专题运营'
+                }
+            ]
+        }
         // {
         //     icon: 'el-icon-lx-copy',
         //     index: 'tabs',

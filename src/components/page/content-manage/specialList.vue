@@ -1,7 +1,6 @@
 <template>
   <div >
-    <div class="booksList"   v-if="!sub">
-            <v-crumbs :list='crumbsList'></v-crumbs>
+    <div class="booksList" >
             <div class="container">
                 <div class="handle-box">
                     <el-input v-model="query.name" placeholder="用户名" class="handle-input mr10"></el-input>
@@ -30,9 +29,6 @@
                 </div>
             </div>
     </div>
-    <div v-else>
-        <router-view></router-view>
-    </div>
   </div>
 </template>
 
@@ -55,7 +51,6 @@ export default {
                     title:"专题运营"
                 }
             ],
-            sub: this.$route.meta.isSub,
             pageData: {
                 pageSize: 10,
                 currentPage: 1,
@@ -77,27 +72,13 @@ export default {
             id: -1
         };
     },
-        watch: {
-    '$route':'getPath'
-    },
     created() {
-        console.log(this.$route.meta.isSub)
-        this.getData();
-    },
-    computed: {
-        list () {
-            this.$store.dispatch('setRouteMatched', this.$route.matched)
-            console.log(this.$route.matched)
-            return this.$route.matched
-        },
+    console.log(this.$route.meta.isSub)
+    this.getData();
     },
     methods: {
-         getPath(){
-      // console.log(this.$route.meta.isSub)
-      this.sub=this.$route.meta.isSub
-    },
         deleteRow(ids, typp) {
-            this.$router.push({ path: '/speciaEdit', query: { id: ids, } });
+            this.$router.push({ path: '/content-manage/speciaEdit', query: { id: ids, } });
         },
         // 获取 easy-mock 的模拟数据
         getData() {

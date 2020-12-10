@@ -29,44 +29,38 @@ export default new Router({
                     component: () => import(/* webpackChunkName: "table" */ '../components/page/BaseTable.vue'),
                     meta: { title: '基础表格',icon: 'el-icon-lx-cascades', }
                 },
-                // {
-                //     path: 'booksList',
-                //     redirect: "../components/page/content-manage",
-                //     // component: {
-                //     //     render (c) {
-                //     //         return c('router-view')
-                //     //     }
-                //     // },                   
-                //     meta: { title: '内容管理',icon: 'el-icon-collection', },
-                //     children: [
-                       
-                //     ]
-
-                // },
                 {
-                    path: '/booksList',
-                    component: () => import(/* webpackChunkName: "chart" */ '../components/page/content-manage/booksList.vue'),
-                    meta: { title: '图书列表',},
+                    path: '/content-manage',
+                    redirect: "../components/page/content-manage",
+                    component: {
+                        render (c) {
+                            return c('router-view')
+                        }
+                    },                   
+                    meta: { title: '内容管理',icon: 'el-icon-collection', },
                     children: [
                         {
-                            path: '/booksEdit',
+                            path: 'booksList',
+                            component: () => import(/* webpackChunkName: "chart" */ '../components/page/content-manage/booksList.vue'),
+                            meta: { title: '图书列表',},
+                        },
+                        {
+                            path: 'booksEdit',
                             component: () => import(/* webpackChunkName: "chart" */ '../components/page/content-manage/booksEdit.vue'),
-                            meta: { title: '图书编辑',isSub: true}
+                            meta: { title: '图书编辑',}
                         },
-                    ]
-                },
-               
-                {
-                    path: '/specialList',
-                    component: () => import(/* webpackChunkName: "chart" */ '../components/page/content-manage/specialList.vue'),
-                    meta: { title: '专题运营'},
-                    children: [
                         {
-                            path: '/speciaEdit',
+                            path: 'specialList',
+                            component: () => import(/* webpackChunkName: "chart" */ '../components/page/content-manage/specialList.vue'),
+                            meta: { title: '专题运营'},
+                        },
+                        {
+                            path: 'speciaEdit',
                             component: () => import(/* webpackChunkName: "chart" */ '../components/page/content-manage/speciaEdit.vue'),
-                            meta: { title: '专题编辑',isSub: true}
+                            meta: { title: '专题编辑',}
                         },
                     ]
+
                 },
                 {
                     path: '/tabs',

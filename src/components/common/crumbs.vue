@@ -1,11 +1,13 @@
 <template>
     <!-- <div class="crumbs"> -->
-        <el-breadcrumb  separator="/" v-if="!routeMatched[1].meta.crumbs">
-            <el-breadcrumb-item v-for="(item, index) in routeMatched" :key="index" v-show="index!=0" >
-                <i :class="item.meta.icon"></i>
-                {{item.meta.title}}
-                </el-breadcrumb-item>
-        </el-breadcrumb>
+      <el-breadcrumb class="app-breadcrumb"  separator="/" v-if="!routeMatched[1].meta.crumbs">
+            <transition-group name="breadcrumb">
+                        <el-breadcrumb-item v-for="(item, index) in routeMatched" :key="item.meta.title" v-show="index!=0" >
+                            <i :class="item.meta.icon"></i>
+                            {{item.meta.title}}
+                            </el-breadcrumb-item>
+            </transition-group>
+       </el-breadcrumb>
     <!-- </div> -->
 </template>
 <script>
@@ -22,6 +24,8 @@ export default {
  computed: {
       ...mapGetters(['routeMatched'])
 },
+  mounted(){console.log(this.routeMatched)},
+
 }
 </script>
 <style scoped>
@@ -37,5 +41,25 @@ export default {
     font-size: 14px;
     padding-left: 10px;
     margin: 10px 0;
+}
+
+  /* breadcrumb transition */
+.breadcrumb-enter-active,
+.breadcrumb-leave-active {
+  transition: all .8s;
+}
+
+.breadcrumb-enter,
+.breadcrumb-leave-active {
+  opacity: 0;
+  transform: translateX(10px);
+}
+
+.breadcrumb-move {
+  transition: all .5s;
+}
+
+.breadcrumb-leave-active {
+  position: absolute;
 }
 </style>

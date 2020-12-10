@@ -1,7 +1,6 @@
 <template>
   <div >
-    <div class="booksList"   v-if="!sub">
-            <v-crumbs :list='crumbsList'></v-crumbs>
+    <div class="booksList" >
             <div class="container">
                 <div class="handle-box">
                     <el-input v-model="query.name" placeholder="用户名" class="handle-input mr10"></el-input>
@@ -47,32 +46,18 @@
                 </div>
             </div>
     </div>
-    <div v-else>
-        <router-view></router-view>
-    </div>
   </div>
 </template>
 
 <script>
 import { fetchData } from '../../../api/index';
 import pageUnit from '../commonest/Page';
-import vCrumbs from '../commonest/crumbs.vue';
 
 export default {
     name: 'basetable',
-    components: { pageUnit ,vCrumbs},
+    components: { pageUnit },
     data() {
         return {
-            crumbsList:[
-                {
-                    icon:"el-icon-collection",
-                    title:"内容管理"
-                },{
-                    icon:"",
-                    title:"图书列表"
-                }
-            ],
-            sub: this.$route.meta.isSub,
             pageData: {
                 pageSize: 10,
                 currentPage: 1,
@@ -94,32 +79,25 @@ export default {
             id: -1
         };
     },
-        watch: {
-    '$route':'getPath'
-    },
     created() {
-        console.log(this.$route.meta.isSub)
+        // console.log(this.$route.meta.isSub)
         this.getData();
     },
     computed: {
         list () {
             this.$store.dispatch('setRouteMatched', this.$route.matched)
-            console.log(this.$route.matched)
+            // console.log(this.$route.matched)
             return this.$route.matched
         },
     },
     methods: {
-         getPath(){
-      // console.log(this.$route.meta.isSub)
-      this.sub=this.$route.meta.isSub
-    },
         deleteRow(ids, typp) {
-            this.$router.push({ path: '/booksEdit', query: { id: ids, } });
+            this.$router.push({ path: '/content-manage/booksEdit', query: { id: ids, } });
         },
         // 获取 easy-mock 的模拟数据
         getData() {
             fetchData(this.query).then(res => {
-                console.log(res);
+                // console.log(res);
                 this.tableData = res.list;
                 this.pageTotal = res.pageTotal || 50;
             });
