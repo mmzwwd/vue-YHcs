@@ -19,10 +19,10 @@ let  routerUrl={
                     index: '/content-manage/booksList',
                     title: '图书列表'
                 },
-                {
-                    index:'/content-manage/specialList',
-                    title:'专题运营'
-                }
+                // {
+                //     index:'/content-manage/specialList',
+                //     title:'专题运营'
+                // }
             ]
         }
         // {

@@ -1,5 +1,11 @@
 <template>
   <div class='speciaEdit'>
+         <sticky-slot class="stickyTop" >
+                <div class="stickyTop-head">
+                    <el-button size="small"  type="primary" >保存</el-button>
+                    <el-button size="small"  style="margin-left:50px;" @click="cancel" type="primary" plain>返回</el-button>
+                </div>
+          </sticky-slot>
         <div class="container">
                <div class="form" >
                 <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="136px" class="demo-ruleForm">
@@ -125,8 +131,10 @@
 <script>
 import { fetchData } from '../../../api/index';
 import {uploadFileSingle} from '@/api/index';
+import stickySlot from '../commonest/stickySlot.vue'
 export default {
   name: 'speciaEdit',
+    components: {stickySlot},
   data(){
     return {
         multipleSelection:[],

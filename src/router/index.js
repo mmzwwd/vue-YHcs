@@ -63,9 +63,14 @@ export default new Router({
 
                 },
                 {
-                    path: '/tabs',
-                    component: () => import(/* webpackChunkName: "tabs" */ '../components/page/Tabs.vue'),
-                    meta: { title: 'tab选项卡' }
+                    path: '/bannerList',
+                    component: () => import(/* webpackChunkName: "tabs" */ '../components/page/bannerList.vue'),
+                    meta: { title: 'banner列表' }
+                },
+                {
+                    path: '/form',
+                    component: () => import(/* webpackChunkName: "form" */ '../components/page/BaseForm.vue'),
+                    meta: { title: '基本表单' }
                 },
                 {
                     path: '/form',

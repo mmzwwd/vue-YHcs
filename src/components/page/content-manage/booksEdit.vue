@@ -1,6 +1,12 @@
 <template>
-  <div class='booksEdit'>
-      <div class="container">
+  <div class='booksEdit'> 
+    <sticky-slot class="stickyTop" >
+                <div class="stickyTop-head">
+                    <el-button size="small"  type="primary" >保存</el-button>
+                    <el-button size="small"  style="margin-left:50px;" @click="cancel" type="primary" plain>返回</el-button>
+                </div>
+      </sticky-slot>
+      <div class="container" style="padding-top:0;">
           <div class="head">
                 <div class="infon_text">
                     <span class="infon_shu"></span>
@@ -254,9 +260,10 @@ import 'quill/dist/quill.core.css';
     import 'quill/dist/quill.snow.css';
     import 'quill/dist/quill.bubble.css';
     import { quillEditor } from 'vue-quill-editor';
+import stickySlot from '../commonest/stickySlot.vue'
 export default {
   name: 'booksEdit',
-  components: { quillEditor},
+  components: { quillEditor,stickySlot},
   data(){
     return {
       dialogPreview:false,
@@ -289,6 +296,9 @@ export default {
   created(){},
   mounted(){},
   methods: {
+     cancel(){
+       this.$router.go(-1);
+      },
     preview(){
     this.dialogPreview=true
   }
