@@ -160,6 +160,9 @@ export default {
   mounted(){
   },
   methods: {
+    cancel(){
+       this.$router.go(-1);
+      },
       // 删除操作
         handleDelete(index, row) {
             this.tableData.splice(index, 1); 
