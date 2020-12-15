@@ -1,6 +1,7 @@
 module.exports = {
-    publicPath: './',
+    publicPath: './', //基础路径
     assetsDir: 'static',
+    outputDir:'vue_YHcs',//打包后的项目目录名称
     productionSourceMap: false,
     // devServer: {
     //     proxy: {

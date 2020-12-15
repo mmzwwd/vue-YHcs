@@ -69,8 +69,13 @@ export default {
     },
     watch: {
 	'$route' () {
+        let meta=this.$route.meta
+        if (meta.activeMenu){
+             this.activeIndex =meta.activeMenu
+        }else{
           let  index=this.$route.matched.length-1
         this.activeIndex = this.$route.matched[index].path
+        }
         //  console.log(this.activeIndex)
 		this.handleSelect(this.activeIndex)
        }
@@ -86,14 +91,17 @@ export default {
     mounted () {
         // console.log(this.$route)
         // console.log(this.$route.matched[1].path.replace('/', ''))
-         let  index=this.$route.matched.length-1
-        console.log( this.$route.matched[index].path)
+        let meta=this.$route.meta
+        if (meta.activeMenu){
+             this.activeIndex =meta.activeMenu
+        }else{
+          let  index=this.$route.matched.length-1
         this.activeIndex = this.$route.matched[index].path
-        console.log(this.activeIndex)
+        }
     },
      methods: {
         handleSelect (index) {
-            console.log(index)
+            // console.log(index)
             this.activeIndex = index
         }
     },

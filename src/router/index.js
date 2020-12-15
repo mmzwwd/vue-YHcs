@@ -47,7 +47,7 @@ export default new Router({
                         {
                             path: 'booksEdit',
                             component: () => import(/* webpackChunkName: "chart" */ '../components/page/content-manage/booksEdit.vue'),
-                            meta: { title: '图书编辑',}
+                            meta: { title: '图书编辑', activeMenu: '/content-manage/booksList',}
                         },
                         {
                             path: 'specialList',
@@ -57,7 +57,7 @@ export default new Router({
                         {
                             path: 'speciaEdit',
                             component: () => import(/* webpackChunkName: "chart" */ '../components/page/content-manage/speciaEdit.vue'),
-                            meta: { title: '专题编辑',}
+                            meta: { title: '专题编辑',activeMenu: '/content-manage/specialList',}
                         },
                     ]
 
