@@ -5,6 +5,7 @@
                 <div class="handle-box">
                     <el-input v-model="query.name" placeholder="用户名" class="handle-input mr10"></el-input>
                     <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
+                    <el-button type="primary" icon="el-icon-plus" @click="specialAdd">新增</el-button>
                 </div>
                 <el-table :data="tableData" border   class="table"   ref="multipleTable"   header-cell-class-name="table-header">
                     <el-table-column type="index" label="序号" width="55" align="center"></el-table-column>
@@ -77,6 +78,9 @@ export default {
     this.getData();
     },
     methods: {
+        specialAdd(){
+            this.$router.push({ path: '/content-manage/speciaAdd'});
+        },
         deleteRow(ids, typp) {
             this.$router.push({ path: '/content-manage/speciaEdit', query: { id: ids, } });
         },

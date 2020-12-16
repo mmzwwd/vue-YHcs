@@ -15,3 +15,9 @@ export function logins (data) {
 export function uploadFileSingle (data) {
     return http(url.uploadFileSingle, data ,'POST')
 }
+export function esSearchPage (data) {
+    return http(url.esSearchPage, data ,'POST')
+}
+export function wenxuanBook (data) {
+    return http(url.wenxuanBook, data ,'GET')
+}

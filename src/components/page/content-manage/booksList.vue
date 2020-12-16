@@ -8,23 +8,22 @@
                 </div>
                 <el-table :data="tableData" border   class="table"   ref="multipleTable"   header-cell-class-name="table-header">
                     <el-table-column type="index" label="序号" width="55" align="center"></el-table-column>
-                    <el-table-column prop="name" label="图书名称" align="center"></el-table-column>
-                    <el-table-column label="ISBN" align="center">
-                        <template slot-scope="scope">￥{{scope.row.money}}</template>
-                    </el-table-column>
-                    <!-- <el-table-column label="头像(查看大图)" align="center">
-                        <template slot-scope="scope">
-                            <el-image
-                                class="table-td-thumb"
-                                :src="scope.row.thumb"
-                                :preview-src-list="[scope.row.thumb]"
-                            ></el-image>
-                        </template>
-                    </el-table-column> -->
-                    <el-table-column prop="address" label="文选ID" align="center"></el-table-column>
+                    <el-table-column prop="title" label="图书名称" align="center"></el-table-column>
+                    <el-table-column prop="barcode" label="ISBN" align="center"> </el-table-column>
+                    <el-table-column prop="bookId" label="文选ID" align="center"></el-table-column>
                     <el-table-column prop="date" label="更新时间" align="center"></el-table-column>
-                    <el-table-column prop="address" label="中图分类" align="center"></el-table-column>
-                    <el-table-column prop="date" label="作者" align="center"></el-table-column>
+                    <el-table-column prop="clc" label="中图分类" align="center">
+                         <template slot-scope="scope">
+                            <span v-if="scope.row.clc=='null'">---</span>
+                            <span v-else>{{scope.row.clc}}</span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="author" label="作者" align="center">
+                        <template slot-scope="scope">
+                            <span v-if="scope.row.author=='null'">---</span>
+                            <span v-else>{{scope.row.author}}</span>
+                        </template>
+                    </el-table-column>
                     <el-table-column label="操作" width="180" align="center">
                         <template slot-scope="scope">
                             <el-button
@@ -50,7 +49,7 @@
 </template>
 
 <script>
-import { fetchData } from '../../../api/index';
+import { fetchData,esSearchPage } from '../../../api/index';
 import pageUnit from '../commonest/Page';
 
 export default {
@@ -64,10 +63,8 @@ export default {
                 total: 0,
                 pageSizeArr: [5, 10, 20]
             },
-            query: {
-                name: '',
-                pageIndex: 1,
-                pageSize: 10
+            query:{
+                name:"",
             },
             tableData: [],
             multipleSelection: [],
@@ -91,20 +88,23 @@ export default {
         },
     },
     methods: {
-        deleteRow(ids, typp) {
-            this.$router.push({ path: '/content-manage/booksEdit', query: { id: ids, } });
+        deleteRow(ids, row) {
+            this.$router.push({ path: '/content-manage/booksEdit', query: { id: row.bookId, } });
         },
-        // 获取 easy-mock 的模拟数据
+        // 获取 书籍列表的数据
         getData() {
-            fetchData(this.query).then(res => {
-                // console.log(res);
-                this.tableData = res.list;
-                this.pageTotal = res.pageTotal || 50;
+            let data ={
+                page:this.pageData.currentPage,
+                pageSize:this.pageData.pageSize
+            }
+            esSearchPage(data).then(res => {
+                 console.log(res);
+                this.tableData = res.res.object;
+                this.pageData.total=res.res.totalNum
             });
         },
         // 触发搜索按钮
         handleSearch() {
-            this.$set(this.query, 'pageIndex', 1);
             this.getData();
         },
         // 删除操作
@@ -145,11 +145,6 @@ export default {
             this.$message.success(`修改第 ${this.idx + 1} 行成功`);
             this.$set(this.tableData, this.idx, this.form);
         },
-        // 分页导航
-        handlePageChange(val) {
-            this.$set(this.query, 'pageIndex', val);
-            this.getData();
-        }
     }
 };
 </script>

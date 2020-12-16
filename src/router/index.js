@@ -59,6 +59,11 @@ export default new Router({
                             component: () => import(/* webpackChunkName: "chart" */ '../components/page/content-manage/speciaEdit.vue'),
                             meta: { title: '专题编辑',activeMenu: '/content-manage/specialList',}
                         },
+                        {
+                            path: 'speciaAdd',
+                            component: () => import(/* webpackChunkName: "chart" */ '../components/page/content-manage/speciaAdd.vue'),
+                            meta: { title: '专题新增',activeMenu: '/content-manage/specialList',}
+                        },
                     ]
 
                 },
@@ -151,5 +156,14 @@ export default new Router({
             path: '*',
             redirect: '/404'
         }
-    ]
+    ],
+    scrollBehavior(to, from, saveTop){
+        if (saveTop) {
+            return saveTop;
+        } else {
+            //跳转页面保持 滚动条在顶部
+            // window.scrollTo(0,0);
+            // return {x: 0, y: 0}
+        }
+    }
 });

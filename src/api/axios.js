@@ -113,15 +113,16 @@ const http = (url, data, method = 'GET', responseType = 'json') => {
         let obj = {
           // token: Cookies.get('ds_token')
         }
-        if (method == 'GET') {
-            obj = Object.assign(obj, data)
+        if (method == 'GET'||method=='Delete') {
+            // obj = Object.assign(obj, data)
+            url= `${url}/${data}`
         }
         axios({
             method: method,
             url: url,
             params: obj,
             data: data,
-            headers: {'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXJyZW50VGltZSI6MTYwNzQ5Mzc1MjExMiwiaXNzIjoiYXV0aDAiLCJleHAiOjE2MDc0OTQwNTIsImFjY291bnQiOiJjdWdiYWRtaW4ifQ.yvah5Kv1-m6QcS2oRjsl5XQeD0U6QCJSD3WZQXZLcYE'},
+            headers: {'token': 'eyJ'},
             responseType: responseType
         }).then(function(response) {
           if (response.data.code == 200 && response.status == 200) {

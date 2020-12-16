@@ -53,7 +53,7 @@ if (process.env.NODE_ENV === 'production') {
         axios.defaults.baseURL = 'http://api.yingheit.com';//路径
     }
 } else { //dev 开发环境
-    axios.defaults.baseURL = 'http://localhost:8080';//路径
+    axios.defaults.baseURL = 'http://172.16.198.116:12000';//路径
 }
 new Vue({
     router,
